@@ -63,7 +63,69 @@ heidegger-society/
 
 ### よくある更新タスク
 
-#### 1. お知らせの追加（news.html）
+#### 1. 学会誌の新号追加（journal.html）
+
+journal.htmlの構造は参考サイト（https://heidegger2017.wixsite.com/mysite/zuspiel-bd-6-2023）を踏襲しています。
+
+**新しい号を追加する手順：**
+
+1. journal.htmlを開く
+2. `<section id="vol6" class="journal-issue-featured">`セクションを見つける
+3. `id="vol6"`を`id="vol7"`に変更（号数を更新）
+4. 以下の部分を新しい内容に置き換える：
+
+**表紙画像：**
+```html
+<img src="表紙画像のURL" alt="Zuspiel Bd. 7 (2024) 表紙">
+```
+
+**タイトルとISSN：**
+```html
+<h2 class="issue-title-large">ハイデガー研究会編『Zuspiel』第7号、2024年</h2>
+<p class="issue-theme">Heidegger Gesellschaft Tokio (Hrsg.), Zuspiel, Bd. 7, 2024.</p>
+```
+
+**目次カテゴリ（特集がある場合）：**
+```html
+<div class="toc-category">
+    <p class="category-title">特集テーマをここに記載</p>
+</div>
+```
+
+**論文情報の追加：**
+各論文について、`<div class="toc-items">`内に以下を追加：
+
+```html
+<article class="toc-item">
+    <div class="toc-content">
+        <h4 class="toc-article-title">論文タイトル</h4>
+        <p class="toc-author">著者名</p>
+        <span class="toc-pages">pp. 1–10</span>
+    </div>
+    <a href="PDFファイルのURL" class="toc-download" target="_blank" rel="noopener">PDF</a>
+</article>
+```
+
+**統合版ダウンロードリンク：**
+```html
+<a href="統合版PDFのURL" class="btn-full-download" target="_blank" rel="noopener">
+    統合版（一括ダウンロード）
+</a>
+```
+
+**刊行情報：**
+```html
+<div class="pub-detail">
+    <span class="pub-label">刊行日</span>
+    <span class="pub-value">2024年3月31日</span>
+</div>
+<div class="pub-detail">
+    <span class="pub-label">編集担当</span>
+    <span class="pub-value">編集者名</span>
+</div>
+```
+
+#### 2. お知らせの追加（news.html）
 
 news.htmlを開き、以下のブロックをコピーして、`<div class="news-timeline">`の直後に追加：
 
