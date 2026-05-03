@@ -17,7 +17,6 @@
 heidegger-society/
 ├── index.html          # ホームページ
 ├── research.html       # 研究内容ページ
-├── members.html        # メンバーページ
 ├── journal.html        # 学会誌ページ
 ├── news.html          # お知らせページ
 ├── styles.css         # スタイルシート（デザイン）
