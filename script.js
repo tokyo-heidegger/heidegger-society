@@ -1,8 +1,29 @@
 // Scroll-triggered animations
 const observerOptions = {
     threshold: 0.15,
-    rootMargin: '0px 0px -50px 0px'
+    // スマホでの判定バグを防ぐため、rootMarginのマイナス値を0に変更
+    rootMargin: '0px 0px 0px 0px' 
 };
+
+// 画面幅がスマホサイズ（768px以下）の場合はアニメーションをスキップ
+const isMobile = window.innerWidth <= 768;
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+// Observe all section elements
+document.addEventListener('DOMContentLoaded', () => {
+    // ★スマホの場合は透明にする初期設定をそもそも実行しない
+    if (isMobile) return; 
+
+    const sections = document.querySelectorAll('section');
+// ...下に続く
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
