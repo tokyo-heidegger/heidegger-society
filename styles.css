@@ -2411,3 +2411,21 @@ section {
 
     /* ▲▲▲ ここまでだ！一文字も漏らすな！ ▲▲▲ */
 }
+/* ========================================
+   【重要】スマホでの「表示されない」問題の強制解決
+   ======================================== */
+@media (max-width: 768px) {
+    /* JavaScriptによる「透明のまま止まる」不具合を強制的に解除し、常に表示させる */
+    section, 
+    .research-card, 
+    .feature-item, 
+    .news-item, 
+    .blog-article,
+    .title-line,
+    .hero-subtitle,
+    .hero-quote {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}
