@@ -1793,6 +1793,9 @@ section {
     font-size: 1rem;
     line-height: 1.9;
     color: var(--text-primary);
+    /* ↓ スマホでの画面はみ出し・横スクロールを完全に防止する追加コード ↓ */
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .article-body h3 {
@@ -1960,7 +1963,9 @@ section {
     font-size: 1rem;
     line-height: 1.9;
     color: var(--text-primary);
-}
+    /* ↓ スマホでの画面はみ出し・横スクロールを完全に防止する追加コード ↓ */
+    overflow-wrap: break-word;
+    word-break: break-word;
 
 .post-content h3 {
     font-family: var(--font-ja);
