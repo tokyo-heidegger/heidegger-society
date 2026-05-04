@@ -2378,4 +2378,31 @@ section {
     .article-title {
         font-size: 1.3rem;
     }
+/* ニュースリストのスマホ用余白圧縮と、はみ出し防止の徹底 */
+    .news-item {
+        padding: 1.5rem 1rem; /* 左右の巨大な余白を削り、コンテンツ領域を確保 */
+        gap: 1rem; /* 要素間の隙間を縮小 */
+        word-break: break-word; /* 長い単語やURLの突き破りを強制ブロック */
+        overflow-wrap: break-word;
+    }
+    
+    /* ニュースタイトルのフォントサイズ最適化 */
+    .news-title {
+        font-size: 1.1rem;
+        line-height: 1.5;
+    }
+
+    /* 旧スタイル（news-detail）を使っている場合のフェイルセーフ */
+    .news-detail {
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+        gap: 1rem;
+    }
+    
+    /* 日付バッジの無駄なサイズダウン */
+    .news-date-badge {
+        padding: 0.8rem;
+    }
+
+    /* ▲▲▲ ここまでだ！一文字も漏らすな！ ▲▲▲ */
 }
