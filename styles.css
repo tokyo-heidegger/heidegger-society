@@ -2430,59 +2430,61 @@ section {
     }
 }
 /* ========================================
-   スマホ版（480px以下）のレイアウト修正
+   スマホ・タブレット版の強制横並び設定
    ======================================== */
-@media (max-width: 480px) {
-    /* ①・② ナビゲーションを横並びにし、高さを抑える */
+@media (max-width: 768px) {
+    /* ① ナビゲーション全体の高さを短くし、横並びを維持 */
     .nav-container {
-        flex-direction: row !important; /* 縦並びを解除 */
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.5rem 1rem !important; /* 上下の余白を削って短くする */
-        min-height: 60px;
+        flex-direction: row !important; /* 縦並びを禁止 */
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 0.5rem 1rem !important; /* 上下の余白を削る */
+        height: 60px !important;
     }
 
+    /* ② 「ホーム、私たちについて...」を横に並べる */
     .nav-links {
-        flex-direction: row !important; /* 項目を横並びにする */
-        gap: 0.8rem !important; /* 項目間の幅を調整 */
-        margin-top: 0 !important;
+        display: flex !important;
+        flex-direction: row !important; /* 縦並びを解除 */
+        gap: 0.5rem !important; /* 項目間のスキマ */
+        margin: 0 !important;
+        padding: 0 !important;
     }
 
     .nav-links li a {
-        font-size: 0.75rem !important; /* 収まりきるように文字を少し小さく */
-        white-space: nowrap; /* 改行させない */
+        font-size: 0.7rem !important; /* 画面幅に収まるよう文字を小さく */
+        padding: 4px 2px !important;
+        white-space: nowrap !important; /* 勝手に改行させない */
     }
 
     .logo-ja {
-        font-size: 0.9rem !important; /* ロゴも少し小さくして一行に収める */
+        font-size: 0.85rem !important; /* ロゴも少し小さくして一行に収める */
     }
 
     .logo-en {
-        display: none; /* スマホでは英語表記を消すとスッキリします（お好みで） */
+        display: none !important; /* 英語ロゴを消してスペースを確保 */
     }
 
-    /* ① indexページ上部（Heroエリア）の領域を短くする */
+    /* ③ indexページの中身（メイン画像とテキスト）を横並びにする */
+    .hero-content {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important; /* 1列(縦)から2列(横)に変更 */
+        gap: 1rem !important;
+        padding: 1rem !important;
+        align-items: center !important;
+        text-align: left !important;
+    }
+
     .hero {
-        padding: 4rem 1rem 2rem !important; /* 上下の余白を大幅に削減 */
+        padding: 4rem 1rem 2rem !important; /* 領域自体を短くする */
         min-height: auto !important;
     }
 
-    /* ③ indexページの中身（Heroコンテンツ）を横並びにする */
-    .hero-content {
-        grid-template-columns: 1.2fr 0.8fr !important; /* 縦積みから横並びに戻す */
-        gap: 1rem !important;
-        text-align: left !important;
-        align-items: center;
-    }
-
     .hero-text h1 {
-        font-size: 1.4rem !important; /* 横並びにするために文字サイズを調整 */
+        font-size: 1.2rem !important; /* 文字が重ならないよう調整 */
     }
-
-    /* indexのお知らせリストなども横並び（画像とテキスト）にする場合 */
-    .news-item {
-        grid-template-columns: 80px 1fr !important; /* 日付/画像とテキストを横に配置 */
-        gap: 1rem !important;
-        padding: 1rem 0 !important;
+    
+    .hero-image {
+        max-width: 100% !important;
     }
 }
