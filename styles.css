@@ -2354,68 +2354,23 @@ section {
     }
 }
 
-@media (max-width: 480px) {
-    .nav-links {
-        flex-direction: column;
-        gap: 0.5rem;
-        font-size: 0.9rem;
-    }
-    
-    .nav-container {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
-    
-    section {
-        padding: 3rem 1.5rem;
-    }
-    
-    .blog-layout {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    
-    .blog-article {
-        padding: 1.5rem;
-    }
-    
-    .article-title {
-        font-size: 1.3rem;
-    }
-/* ニュースリストのスマホ用余白圧縮と、はみ出し防止の徹底 */
-    .news-item {
-        padding: 1.5rem 1rem; /* 左右の巨大な余白を削り、コンテンツ領域を確保 */
-        gap: 1rem; /* 要素間の隙間を縮小 */
-        word-break: break-word; /* 長い単語やURLの突き破りを強制ブロック */
-        overflow-wrap: break-word;
-    }
-    
-    /* ニュースタイトルのフォントサイズ最適化 */
-    .news-title {
-        font-size: 1.1rem;
-        line-height: 1.5;
-    }
 
-    /* 旧スタイル（news-detail）を使っている場合のフェイルセーフ */
-    .news-detail {
-        padding-bottom: 2rem;
-        margin-bottom: 2rem;
-        gap: 1rem;
-    }
-    
-    /* 日付バッジの無駄なサイズダウン */
-    .news-date-badge {
-        padding: 0.8rem;
-    }
-
-    /* ▲▲▲ ここまでだ！一文字も漏らすな！ ▲▲▲ */
-}
 /* ========================================
-   【重要】スマホでの「表示されない」問題の強制解決
+   Mobile Responsive Design - Complete Overhaul
    ======================================== */
+
+/* デスクトップではメニュートグルボタンを非表示 */
+.menu-toggle {
+    display: none;
+}
+
+.nav-overlay {
+    display: none;
+}
+
+/* 768px以下 - タブレット・スマホ */
 @media (max-width: 768px) {
-    /* JavaScriptによる「透明のまま止まる」不具合を強制的に解除し、常に表示させる */
+    /* コンテンツの不透明度問題を強制解決 */
     section, 
     .research-card, 
     .feature-item, 
@@ -2428,63 +2383,211 @@ section {
         transform: none !important;
         transition: none !important;
     }
-}
-/* ========================================
-   スマホ・タブレット版の強制横並び設定
-   ======================================== */
-@media (max-width: 768px) {
-    /* ① ナビゲーション全体の高さを短くし、横並びを維持 */
-    .nav-container {
-        flex-direction: row !important; /* 縦並びを禁止 */
-        justify-content: space-between !important;
-        align-items: center !important;
-        padding: 0.5rem 1rem !important; /* 上下の余白を削る */
-        height: 60px !important;
-    }
-
-    /* ② 「ホーム、私たちについて...」を横に並べる */
-    .nav-links {
-        display: flex !important;
-        flex-direction: row !important; /* 縦並びを解除 */
-        gap: 0.5rem !important; /* 項目間のスキマ */
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    .nav-links li a {
-        font-size: 0.7rem !important; /* 画面幅に収まるよう文字を小さく */
-        padding: 4px 2px !important;
-        white-space: nowrap !important; /* 勝手に改行させない */
-    }
-
-    .logo-ja {
-        font-size: 0.85rem !important; /* ロゴも少し小さくして一行に収める */
-    }
-
-    .logo-en {
-        display: none !important; /* 英語ロゴを消してスペースを確保 */
-    }
-
-    /* ③ indexページの中身（メイン画像とテキスト）を横並びにする */
-    .hero-content {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important; /* 1列(縦)から2列(横)に変更 */
-        gap: 1rem !important;
-        padding: 1rem !important;
-        align-items: center !important;
-        text-align: left !important;
-    }
-
-    .hero {
-        padding: 4rem 1rem 2rem !important; /* 領域自体を短くする */
-        min-height: auto !important;
-    }
-
-    .hero-text h1 {
-        font-size: 1.2rem !important; /* 文字が重ならないよう調整 */
+    
+    /* メニュートグルボタンを表示 */
+    .menu-toggle {
+        display: block;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1001;
+        background: var(--primary-dark);
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        border-radius: 4px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        font-family: var(--font-ja);
     }
     
-    .hero-image {
-        max-width: 100% !important;
+    /* ナビゲーションを固定サイドメニューに */
+    .main-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        z-index: 999;
+    }
+    
+    .nav-container {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: white;
+        z-index: 1000;
+        transition: right 0.3s ease;
+        box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+        overflow-y: auto;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0;
+    }
+    
+    .nav-container.active {
+        right: 0;
+    }
+    
+    /* オーバーレイ */
+    .nav-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 999;
+    }
+    
+    .nav-overlay.active {
+        display: block;
+    }
+    
+    /* ロゴ */
+    .nav-container .logo {
+        display: block;
+        padding: 20px;
+        border-bottom: 2px solid var(--accent-gold);
+        text-align: left;
+    }
+    
+    .logo-ja {
+        display: block;
+        font-size: 1.2rem;
+    }
+    
+    .logo-en {
+        display: block;
+        font-size: 0.8rem;
+    }
+    
+    /* ナビゲーションリンク - 横書きで縦に並ぶ */
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        padding: 20px 0;
+        gap: 0;
+        list-style: none;
+        margin: 0;
+    }
+    
+    .nav-links li {
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .nav-links a {
+        display: block;
+        padding: 15px 20px;
+        font-size: 1rem;
+        color: var(--text-primary);
+        text-decoration: none;
+        transition: background 0.2s ease;
+    }
+    
+    .nav-links a:hover,
+    .nav-links a.active {
+        background: var(--bg-secondary);
+        color: var(--accent-gold);
+    }
+    
+    /* ヒーローセクションを横書きに */
+    .hero {
+        min-height: 60vh;
+        padding: 100px 2rem 4rem;
+    }
+    
+    .hero-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .hero-title {
+        writing-mode: horizontal-tb !important;
+        text-align: left;
+        font-size: 2.5rem;
+    }
+    
+    .title-line {
+        display: inline;
+    }
+    
+    .title-line::after {
+        content: ' ';
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+        text-align: left;
+    }
+    
+    .hero-quote {
+        margin-top: 2rem;
+    }
+    
+    .hero-quote blockquote {
+        font-size: 1rem;
+        padding-left: 1rem;
+    }
+    
+    /* セクション余白調整 */
+    section {
+        padding: 3rem 1.5rem;
+    }
+    
+    /* ブログレイアウト */
+    .blog-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .blog-sidebar-col {
+        position: relative;
+        top: 0;
+    }
+}
+
+/* 480px以下 - スマホ */
+@media (max-width: 480px) {
+    .menu-toggle {
+        top: 15px;
+        right: 15px;
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+    
+    .nav-container {
+        width: 250px;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    section {
+        padding: 2rem 1rem;
+    }
+    
+    .blog-article {
+        padding: 1.5rem;
+    }
+    
+    .article-title {
+        font-size: 1.3rem;
+    }
+    
+    .news-item {
+        padding: 1.5rem 1rem;
+        gap: 1rem;
+    }
+    
+    .news-title {
+        font-size: 1.1rem;
+        line-height: 1.5;
     }
 }
