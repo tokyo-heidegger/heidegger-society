@@ -1,6 +1,6 @@
 // Scroll-triggered animations
 const observerOptions = {
-    threshold: 0.15,
+    threshold: 0,    // ← 0.15 を 0 に変更
     rootMargin: '0px 0px -50px 0px'
 };
 
